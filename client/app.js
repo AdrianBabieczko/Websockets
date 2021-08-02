@@ -36,9 +36,27 @@ function sendMessage(event) {
 };
 
 function addMessage(author, content) {
-    var li = document.createElement('li');
+    const message = document.createElement('li');
+    message.classList.add('message');
+    message.classList.add('message--received');
 
-    li.appendChild(document.createTextNode(content));
-    messagesList.appendChild(li);
+    const messageAuthor = document.createElement('h3');
+    messageAuthor.classList.add('message__author');
 
+    if (author == userName) {
+        message.classList.add('message--self');
+        messageAuthor.textContent = 'You';
+    }
+    else {
+        messageAuthor.textContent = author;
+    }
+
+    const messageContent = document.createElement('div');
+    messageContent.classList.add('message__content');
+    messageContent.textContent = content;
+
+    message.appendChild(messageAuthor);
+    message.appendChild(messageContent);
+
+    messagesList.appendChild(message);
 };
