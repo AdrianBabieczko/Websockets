@@ -4,11 +4,10 @@ const socket = require('socket.io');
 
 
 const app = express();
-const port = 8000;
 
-const server = app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-})
+const port = process.env.PORT || 8000;
+
+const server = app.listen(port);
 
 const io = socket(server);
 
